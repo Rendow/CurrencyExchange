@@ -17,9 +17,9 @@ const CurrencyEContainer: React.FC<TProps> = props => {
         isBuying,
         amountOfBYN,
         amountOfCurrency,
-        setCurrencyAmount,
-        setAction,
-        changeCurrency,
+        changeCurrencyFieldAC,
+        changeActionAC,
+        changeCurrentCurrencyAC
     } = props;
 
     let currencyRate: number = 0;
@@ -37,25 +37,25 @@ const CurrencyEContainer: React.FC<TProps> = props => {
             const trigger: string = e.currentTarget.dataset.currency;
             if (trigger === 'byn') {
                 if (value === '') {
-                    setCurrencyAmount(value, value);
+                    changeCurrencyFieldAC(value, value);
                 } else {
-                    setCurrencyAmount(value, (+Number(value).toFixed(2) / currencyRate).toFixed(2));
+                    changeCurrencyFieldAC(value, (+Number(value).toFixed(2) / currencyRate).toFixed(2));
                 }
             } else {
                 if (value === '') {
-                    setCurrencyAmount(value, value);
+                    changeCurrencyFieldAC(value, value);
                 } else {
-                    setCurrencyAmount((+Number(value).toFixed(2) * currencyRate).toFixed(2), value);
+                    changeCurrencyFieldAC((+Number(value).toFixed(2) * currencyRate).toFixed(2), value);
                 }
             }
         }
     };
     const changeAction = (e: React.MouseEvent<HTMLSpanElement>) => {
-        e.currentTarget.dataset.action === 'buy' ? setAction(true) : setAction(false);
+        e.currentTarget.dataset.action === 'buy' ? changeActionAC(true) : changeActionAC(false);
     };
 
     const changeCurrentCurrency = (e: React.MouseEvent<HTMLLIElement>) => {
-        e.currentTarget.dataset.currency && changeCurrency(e.currentTarget.dataset.currency);
+        e.currentTarget.dataset.currency && changeCurrentCurrencyAC(e.currentTarget.dataset.currency);
     };
 
     return (
@@ -85,23 +85,10 @@ const mapStateToProps = ( { currency } : {currency: CurrencyState} ): CurrencySt
     };
 };
 
-// @ts-ignore
-const mapDispatchToProps = (dispatch: Dispatch<CurrencyReducersTypes>) : any => {
-    return {
-        setCurrencyAmount(amountOfBYN: string, amountOfCurrency: string) {
-            dispatch(changeCurrencyFieldAC(amountOfBYN, amountOfCurrency));
-        },
-        setAction(isBuying: boolean) {
-            dispatch(changeActionAC(isBuying));
-        },
-        changeCurrency(currency: string) {
-            dispatch(changeCurrentCurrencyAC(currency));
-        },
-    };
-};
+
 
 // @ts-ignore
-const connector = connect(mapStateToProps, mapDispatchToProps);
+const connector = connect(mapStateToProps, {changeCurrencyFieldAC,changeActionAC,changeCurrentCurrencyAC});
 
 type TProps = ConnectedProps<typeof connector>;
 
