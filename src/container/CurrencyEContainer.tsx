@@ -1,9 +1,9 @@
-import React, {Dispatch} from 'react';
-import CurrencyExchange from './CurrencyExchange';
+import CurrencyExchange from '../components/CurrencyExchange';
 import {CurrencyType} from '../redux/currencyReducer';
 import {changeActionAC, changeCurrencyFieldAC, changeCurrentCurrencyAC, CurrencyReducersTypes} from '../redux/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {GlobalStateType} from "../redux/state";
+import React, {Dispatch} from "react";
 
 const CurrencyEContainer: React.FC = () => {
 
@@ -49,11 +49,10 @@ const CurrencyEContainer: React.FC = () => {
     };
 
     const changeCurrentCurrency = (e: React.MouseEvent<HTMLLIElement>) => {
-        e.currentTarget.dataset.currency && changeCurrentCurrencyAC(e.currentTarget.dataset.currency);
+        e.currentTarget.dataset.currency && dispatch(changeCurrentCurrencyAC(e.currentTarget.dataset.currency));
     };
 
     return (
-        <React.Fragment>
             <CurrencyExchange
                 currenciesName={currenciesName}
                 currentCurrency={currentCurrency}
@@ -65,7 +64,6 @@ const CurrencyEContainer: React.FC = () => {
                 changeAction={changeAction}
                 changeCurrentCurrency={changeCurrentCurrency}
             />
-        </React.Fragment>
     );
 };
 

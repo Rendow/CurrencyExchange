@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import CurrencyExchangeContainer from "./components/CurrencyEContainer";
+import CurrencyExchangeContainer from "./container/CurrencyEContainer";
 
 function App() {
     return (
