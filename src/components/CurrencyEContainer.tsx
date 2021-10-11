@@ -1,11 +1,10 @@
 import React from 'react';
 import CurrencyExchange from './CurrencyExchange';
 import { CurrencyState, CurrencyType } from '../redux/currencyReducer';
-import { Dispatch } from 'redux';
 import {
-    ChangeActionAC,
-    ChangeCurrencyFieldAC,
-    СhangeCurrentCurrencyAC,
+    changeActionAC,
+    changeCurrencyFieldAC,
+    changeCurrentCurrencyAC,
     CurrencyReducersTypes
 } from '../redux/actions';
 import { connect, ConnectedProps } from 'react-redux';
@@ -90,13 +89,13 @@ const mapStateToProps = ( { currency } : {currency: CurrencyState} ): CurrencySt
 const mapDispatchToProps = (dispatch: Dispatch<CurrencyReducersTypes>) : any => {
     return {
         setCurrencyAmount(amountOfBYN: string, amountOfCurrency: string) {
-            dispatch(ChangeCurrencyFieldAC(amountOfBYN, amountOfCurrency));
+            dispatch(changeCurrencyFieldAC(amountOfBYN, amountOfCurrency));
         },
         setAction(isBuying: boolean) {
-            dispatch(ChangeActionAC(isBuying));
+            dispatch(changeActionAC(isBuying));
         },
         changeCurrency(currency: string) {
-            dispatch(СhangeCurrentCurrencyAC(currency));
+            dispatch(changeCurrentCurrencyAC(currency));
         },
     };
 };
