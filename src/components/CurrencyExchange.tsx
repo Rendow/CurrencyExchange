@@ -6,7 +6,7 @@ type CurrencyExchangePropsType = {
     currentCurrency: string;
     currencyRate: number;
     isBuying: boolean;
-    amountOfBYN: string;
+    amountOfUSD: string;
     amountOfCurrency: string;
     changeCurrencyField: (e: React.ChangeEvent<HTMLInputElement>) => void;
     changeAction: (e: React.MouseEvent<HTMLSpanElement>) => void;
@@ -19,7 +19,7 @@ const CurrencyExchange: React.FC<CurrencyExchangePropsType> = props => {
         currentCurrency,
         currencyRate,
         isBuying,
-        amountOfBYN,
+        amountOfUSD,
         amountOfCurrency,
         changeCurrencyField,
         changeAction,
@@ -29,9 +29,9 @@ const CurrencyExchange: React.FC<CurrencyExchangePropsType> = props => {
     const viewCurrency = isBuying ? (
         <>
             <label>
-                You give the next amount of BYN:
-                <InputComponent dataCurrency={"byn"}
-                                value={amountOfBYN}
+                You give the next amount of USD:
+                <InputComponent dataCurrency={"usd"}
+                                value={amountOfUSD}
                                 onChange={changeCurrencyField}/>
             </label>
             <label>
@@ -49,9 +49,9 @@ const CurrencyExchange: React.FC<CurrencyExchangePropsType> = props => {
                                     onChange={changeCurrencyField}/>
                 </label>
 
-            <label> You get the next amount of BYN:
-                <InputComponent dataCurrency={"byn"}
-                                value={amountOfBYN}
+            <label> You get the next amount of USD:
+                <InputComponent dataCurrency={"usd"}
+                                value={amountOfUSD}
                                 onChange={changeCurrencyField}/>
             </label>
         </>
@@ -59,7 +59,7 @@ const CurrencyExchange: React.FC<CurrencyExchangePropsType> = props => {
 
     return (
         <div className="currency">
-            <h2>Currency exchange</h2>
+            <h2 style={{marginBottom:'25x'}}>Currency exchange</h2>
             <div className="currency-names">
                 <p>Current currency:</p>
                 <ul>
@@ -78,10 +78,10 @@ const CurrencyExchange: React.FC<CurrencyExchangePropsType> = props => {
                 </ul>
             </div>
             <div className="currency-action">
-        <span  className={"btn btn-outline-success"} data-action="buy" onClick={changeAction}>
+        <span style={{opacity:'0.8'}} className={"btn btn-outline-success"} data-action="buy" onClick={changeAction}>
           Buy
         </span>
-                <span className={'btn btn-outline-danger'} data-action="sell" onClick={changeAction}>
+                <span style={{opacity:'0.8'}} className={'btn btn-outline-danger'} data-action="sell" onClick={changeAction}>
           Sell
         </span>
             </div>

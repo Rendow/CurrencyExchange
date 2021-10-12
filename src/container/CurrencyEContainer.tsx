@@ -10,7 +10,7 @@ const CurrencyEContainer: React.FC = () => {
     const {  currencies,
         currentCurrency,
         isBuying,
-        amountOfBYN,
+        amountOfUSD,
         amountOfCurrency
     } = useSelector((state:GlobalStateType) => state.currency)
 
@@ -29,17 +29,17 @@ const CurrencyEContainer: React.FC = () => {
         if (!isFinite(+value)) return;
         if (e.currentTarget.dataset.currency) {
             const trigger: string = e.currentTarget.dataset.currency;
-            if (trigger === 'byn') {
+            if (trigger === 'usd') {
                 if (value === '') {
                     dispatch(changeCurrencyFieldAC(value, value));
                 } else {
-                    dispatch(changeCurrencyFieldAC(value, (+Number(value).toFixed(2) / currencyRate).toFixed(2)))
+                    dispatch(changeCurrencyFieldAC(value, (+Number(value).toFixed(2) * currencyRate).toFixed(2)))
                 }
             } else {
                 if (value === '') {
                     dispatch(changeCurrencyFieldAC(value, value));
                 } else {
-                    dispatch(changeCurrencyFieldAC((+Number(value).toFixed(2) * currencyRate).toFixed(2), value));
+                    dispatch(changeCurrencyFieldAC((+Number(value).toFixed(2) / currencyRate).toFixed(2), value));
                 }
             }
         }
@@ -58,7 +58,7 @@ const CurrencyEContainer: React.FC = () => {
                 currentCurrency={currentCurrency}
                 currencyRate={currencyRate}
                 isBuying={isBuying}
-                amountOfBYN={amountOfBYN}
+                amountOfUSD={amountOfUSD}
                 amountOfCurrency={amountOfCurrency}
                 changeCurrencyField={changeCurrencyField}
                 changeAction={changeAction}

@@ -10,31 +10,32 @@ export type CurrencyState = {
     currencies: Array<CurrencyType>;
     currentCurrency: string;
     isBuying: boolean;
-    amountOfBYN: string;
+    amountOfUSD: string;
     amountOfCurrency: string;
 };
 
 const initialState: CurrencyState = {
     currencies: [
         {
-            currencyName: 'USD',
-            buyRate: 2.62,
-            sellRate: 2.58,
-        },
-        {
             currencyName: 'EUR',
-            buyRate: 3.1,
-            sellRate: 3.06,
+            buyRate: 0.8439,
+            sellRate: 0.8639,
         },
         {
             currencyName: 'RUR',
-            buyRate: 0.0345,
-            sellRate: 0.0341,
+            buyRate: 71.437,
+            sellRate: 71.637,
+        },
+
+        {
+            currencyName: 'GBR',
+            buyRate: 0.7133,
+            sellRate: 0.7333,
         },
     ],
-    currentCurrency: 'USD',
+    currentCurrency: 'EUR',
     isBuying: true,
-    amountOfBYN: '',
+    amountOfUSD: '',
     amountOfCurrency: '',
 };
 
@@ -48,7 +49,7 @@ export const currencyReducer = (state: CurrencyState = initialState, action: Cur
         case ACTIONS_TYPE.CHANGE_CURRENT_CURRENCY:{
             return { ...state,
                 ...action.payload,
-                amountOfBYN:'',
+                amountOfUSD:'',
                 amountOfCurrency:'',
             }
         }
