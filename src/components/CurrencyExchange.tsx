@@ -57,6 +57,9 @@ const CurrencyExchange: React.FC<CurrencyExchangePropsType> = props => {
         </>
     );
 
+const sellClass = `btn btn-outline-primary ${isBuying ? 'activeCurrency' : null}`
+const buyClass = `btn btn-outline-primary ${!isBuying ? 'activeCurrency' : null}`
+
     return (
         <div className="currency">
             <h2 style={{marginBottom:'25x'}}>Currency exchange</h2>
@@ -67,7 +70,7 @@ const CurrencyExchange: React.FC<CurrencyExchangePropsType> = props => {
                         return (
                             <li
                                 key={`${index}-${currency}`}
-                                className={`currencies ${currentCurrency === currency ? 'activeCurrency' : null}`}
+                                className={`btn btn-outline-primary ${currentCurrency === currency ? 'activeCurrency' : null}`}
                                 onClick={changeCurrentCurrency}
                                 data-currency={currency}
                             >
@@ -78,16 +81,16 @@ const CurrencyExchange: React.FC<CurrencyExchangePropsType> = props => {
                 </ul>
             </div>
             <div className="currency-action">
-        <span style={{opacity:'0.8'}} className={"btn btn-outline-success"} data-action="buy" onClick={changeAction}>
+        <span className={sellClass} data-action="buy" onClick={changeAction}>
           Buy
         </span>
-                <span style={{opacity:'0.8'}} className={'btn btn-outline-danger'} data-action="sell" onClick={changeAction}>
+                <span className={buyClass} data-action="sell" onClick={changeAction}>
           Sell
         </span>
             </div>
             <div className="fields">
-                <p>Currency rate: <p> {currencyRate} </p> </p>
-                  {viewCurrency}
+                <p>Currency rate: <p> {currencyRate} </p></p>
+                {viewCurrency}
             </div>
         </div>
     );

@@ -12,17 +12,20 @@ export type ChangeCurrencyFieldType = {
         amountOfCurrency: string
     }
 };
-
-export const changeCurrencyFieldAC = (amountOfBYN: string, amountOfCurrency: string): ChangeCurrencyFieldType => {
-    return {
-        type:ACTIONS_TYPE.CHANGE_CURRENCY_FIELD,
-        payload:{amountOfUSD: amountOfBYN, amountOfCurrency},
-    }
-};
-
 export type ChangeAction = {
     type:ACTIONS_TYPE.CHANGE_CHANGE_ACTION
     payload:{isBuying: boolean}
+};
+export type ChangeCurrentCurrencyType = {
+    type:ACTIONS_TYPE.CHANGE_CURRENT_CURRENCY
+    payload:{currentCurrency: string}
+};
+
+export const changeCurrencyFieldAC = (amountOfUSD: string, amountOfCurrency: string): ChangeCurrencyFieldType => {
+    return {
+        type:ACTIONS_TYPE.CHANGE_CURRENCY_FIELD,
+        payload:{amountOfUSD: amountOfUSD, amountOfCurrency},
+    }
 };
 
 export const changeActionAC = (isBuying: boolean): ChangeAction => {
@@ -30,11 +33,6 @@ export const changeActionAC = (isBuying: boolean): ChangeAction => {
         type:ACTIONS_TYPE.CHANGE_CHANGE_ACTION,
         payload: {isBuying},
     }
-};
-
-export type ChangeCurrentCurrencyType = {
-    type:ACTIONS_TYPE.CHANGE_CURRENT_CURRENCY
-    payload:{currentCurrency: string}
 };
 
 export const changeCurrentCurrencyAC = (currentCurrency: string): ChangeCurrentCurrencyType => {

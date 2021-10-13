@@ -1,4 +1,4 @@
-import CurrencyExchange from '../components/CurrencyExchange';
+import CurrencyExchange from './CurrencyExchange';
 import {CurrencyType} from '../redux/currencyReducer';
 import {changeActionAC, changeCurrencyFieldAC, changeCurrentCurrencyAC, CurrencyReducersTypes} from '../redux/actions';
 import {useDispatch, useSelector} from 'react-redux';
